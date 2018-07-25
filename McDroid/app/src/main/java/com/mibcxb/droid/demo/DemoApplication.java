@@ -5,14 +5,14 @@ import android.util.Log;
 
 import com.mibcxb.droid.McDroid;
 
-public class DemoApplication extends Application {
-    public static final String TAG = DemoApplication.class.getSimpleName();
+import static com.mibcxb.droid.McDroid.logger;
 
+public class DemoApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
 
         McDroid.init(this);
-        Log.e(TAG, "McDroid initialized: " + McDroid.versionName());
+        logger().error("McDroid initialized: {}", McDroid.versionName());
     }
 }
