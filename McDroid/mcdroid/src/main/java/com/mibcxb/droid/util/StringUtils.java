@@ -1,11 +1,27 @@
 package com.mibcxb.droid.util;
 
 import java.lang.reflect.Array;
+import java.util.regex.Pattern;
 
 /**
  * @since 1.0.0
  */
 public class StringUtils {
+    public static boolean isChineseIdentityCode(final CharSequence cs) {
+        if (isBlank(cs)) {
+            return false;
+        }
+        int strLen = cs.length();
+        switch (strLen) {
+            case 15:
+                return Pattern.matches("^[1-9]\\d{5}\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{2}$", cs);
+            case 18:
+                return Pattern.matches("^[1-9]\\d{5}(18|19|([23]\\d))\\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\\d{3}[0-9Xx]$", cs);
+            default:
+                return false;
+        }
+    }
+
     /**
      * <p>Checks if a CharSequence is empty (""), null or whitespace only.</p>
      * <p>

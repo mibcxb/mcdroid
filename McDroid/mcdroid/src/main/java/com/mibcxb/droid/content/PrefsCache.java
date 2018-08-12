@@ -15,10 +15,8 @@ public class PrefsCache {
     private static final long NEVER_EXPIRED = -1;
     private static final long DO_NOT_CHANGE = 0;
 
-    public static PrefsCache initialize(Context context) {
-        PrefsCache prefsCache = getInstance();
-        prefsCache.doInit(context);
-        return prefsCache;
+    public static void initialize(Context context) {
+        getInstance().doInit(context);
     }
 
     public static PrefsCache getInstance() {
