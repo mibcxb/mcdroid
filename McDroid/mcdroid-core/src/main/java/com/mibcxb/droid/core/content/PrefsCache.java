@@ -1,12 +1,13 @@
-package com.mibcxb.droid.content;
+package com.mibcxb.droid.core.content;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.google.gson.Gson;
-import com.mibcxb.droid.util.StringUtils;
+import com.mibcxb.droid.core.util.StringUtils;
 
-import static com.mibcxb.droid.McDroid.logger;
+import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
+
 
 public class PrefsCache {
     private static final String NAME = "com.mibcxb.droid.content.prefs.cahce";
@@ -16,10 +17,10 @@ public class PrefsCache {
     private static final long DO_NOT_CHANGE = 0;
 
     public static void initialize(Context context) {
-        getInstance().doInit(context);
+        instance().doInit(context);
     }
 
-    public static PrefsCache getInstance() {
+    public static PrefsCache instance() {
         return ourInstance;
     }
 

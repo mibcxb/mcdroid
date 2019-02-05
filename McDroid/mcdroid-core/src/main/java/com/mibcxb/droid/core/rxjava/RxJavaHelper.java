@@ -1,4 +1,4 @@
-package com.mibcxb.droid.util;
+package com.mibcxb.droid.core.rxjava;
 
 import android.support.annotation.NonNull;
 
@@ -11,10 +11,10 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.mibcxb.droid.McDroid.logger;
-import static com.mibcxb.droid.McDroid.printError;
+import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
+import static com.mibcxb.droid.core.logger.McDroidLogger.printE;
 
-public class RxJavaUtils {
+public class RxJavaHelper {
     public static <T> Observable<T> onMainThread(@NonNull Observable<T> observable) {
         return onMainThread(observable, null);
     }
@@ -77,7 +77,7 @@ public class RxJavaUtils {
         return new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
-                printError(throwable);
+                printE(throwable);
             }
         };
     }

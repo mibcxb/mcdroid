@@ -1,4 +1,4 @@
-package com.mibcxb.droid.helper;
+package com.mibcxb.droid.core.content;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,11 +63,11 @@ public class PagingHelper<DataType> {
         }
     }
 
-    public void setOnPageLoadCallback(OnPageLoadCallback onPageLoadCallback) {
+    public synchronized void setOnPageLoadCallback(OnPageLoadCallback onPageLoadCallback) {
         this.onPageLoadCallback = onPageLoadCallback;
     }
 
-    public void setOnDataChangeListener(OnDataChangeListener<DataType> onDataChangeListener) {
+    public synchronized void setOnDataChangeListener(OnDataChangeListener<DataType> onDataChangeListener) {
         this.onDataChangeListener = onDataChangeListener;
     }
 

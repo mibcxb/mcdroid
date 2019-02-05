@@ -2,16 +2,12 @@ package com.mibcxb.droid;
 
 import android.content.Context;
 
-import com.mibcxb.droid.content.PrefsCache;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mibcxb.droid.core.content.PrefsCache;
 
 /**
  * @since 1.0.0
  */
 public final class McDroid {
-    private static Logger sLogger = LoggerFactory.getLogger("McDroid");
 
     private McDroid() {
     }
@@ -26,13 +22,5 @@ public final class McDroid {
 
     public static String versionName() {
         return BuildConfig.VERSION_NAME;
-    }
-
-    public static Logger logger() {
-        return sLogger;
-    }
-
-    public static void printError(Throwable throwable) {
-        sLogger.error(throwable.getMessage(), throwable);
     }
 }
