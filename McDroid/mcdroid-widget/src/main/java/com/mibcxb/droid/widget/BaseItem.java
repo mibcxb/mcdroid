@@ -4,14 +4,20 @@ import java.util.UUID;
 
 public class BaseItem<Data> {
     private final String uuid = UUID.randomUUID().toString();
+    private final int type;
     private Data data;
 
-    public BaseItem(Data data) {
+    public BaseItem(int type, Data data) {
+        this.type = type;
         this.data = data;
     }
 
     public String getUuid() {
         return uuid;
+    }
+
+    public int getType() {
+        return type;
     }
 
     public Data getData() {

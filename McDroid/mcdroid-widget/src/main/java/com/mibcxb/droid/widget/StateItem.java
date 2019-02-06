@@ -1,7 +1,5 @@
 package com.mibcxb.droid.widget;
 
-import android.support.annotation.IntDef;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StateItem<Data> extends BaseItem<Data> {
@@ -14,8 +12,8 @@ public class StateItem<Data> extends BaseItem<Data> {
         this(item, ST_DEFAULT);
     }
 
-    public StateItem(Data data, @State int state) {
-        super(data);
+    public StateItem(Data data, int state) {
+        super(0, data);
         stateRef = new AtomicInteger(state);
     }
 
@@ -27,11 +25,7 @@ public class StateItem<Data> extends BaseItem<Data> {
         return stateRef.get();
     }
 
-    public void setState(@State int state) {
+    public void setState(int state) {
         stateRef.set(state);
-    }
-
-    @IntDef({ST_DEFAULT, ST_CHECKED})
-    public @interface State {
     }
 }

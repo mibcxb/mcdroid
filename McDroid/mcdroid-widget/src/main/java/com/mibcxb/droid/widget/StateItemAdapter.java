@@ -2,7 +2,7 @@ package com.mibcxb.droid.widget;
 
 import android.support.annotation.IntRange;
 
-public abstract class StateItemAdapter<Item extends StateItem> extends BaseItemAdapter<Item> {
+public abstract class StateItemAdapter<Item extends StateItem> extends BaseItemAdapter<Item, StateViewHolder<Item>> {
     private boolean multiCheckEnabled;
     private int multiCheckLimit = -1;
 
@@ -23,7 +23,7 @@ public abstract class StateItemAdapter<Item extends StateItem> extends BaseItemA
     }
 
     public void checkItem(@IntRange(from = 0) int position) {
-        if (position >= getCount()) {
+        if (position >= size()) {
             return;
         }
         if (multiCheckEnabled) {
@@ -49,20 +49,20 @@ public abstract class StateItemAdapter<Item extends StateItem> extends BaseItemA
         if (multiCheckLimit >= 0) {
             return;
         }
-        for (int i = 0; i < getCount(); i++) {
+        for (int i = 0; i < size(); i++) {
             getItem(i).setState(StateItem.ST_CHECKED);
         }
     }
 
     public void uncheckAll() {
-        for (int i = 0; i < getCount(); i++) {
+        for (int i = 0; i < size(); i++) {
             getItem(i).setState(StateItem.ST_DEFAULT);
         }
     }
 
     public int getCheckedCount() {
         int count = 0;
-        for (Item item : getItemList()) {
+        for (Item item : getItems()) {
             if (item.isChecked()) {
                 count++;
             }
