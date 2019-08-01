@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.mibcxb.droid.core.util.StringUtils;
 
-import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
+import static com.mibcxb.droid.core.McDroidLog.logger;
 
 
 public class PrefsCache {

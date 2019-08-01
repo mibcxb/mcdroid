@@ -12,8 +12,8 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
-import static com.mibcxb.droid.core.logger.McDroidLogger.printE;
+import static com.mibcxb.droid.core.McDroidLog.logger;
+import static com.mibcxb.droid.core.McDroidLog.printE;
 
 /**
  * Use this controller when api code < 21

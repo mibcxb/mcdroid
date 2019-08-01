@@ -4,7 +4,7 @@ import android.app.Application;
 
 import com.mibcxb.droid.McDroid;
 
-import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
+import static com.mibcxb.droid.core.McDroidLog.logger;
 
 
 public class DemoApplication extends Application {

@@ -8,14 +8,14 @@ import android.graphics.PorterDuff;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.mibcxb.droid.core.logger.McDroidLogger;
-
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.mibcxb.droid.core.McDroidLog.logger;
 
 
 public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
@@ -58,8 +58,8 @@ public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, R
 
     @Override
     public void run() {
-        while (running){
-            McDroidLogger.logger().error("AAAAAA {}", System.currentTimeMillis());
+        while (running) {
+            logger().error("AAAAAA {}", System.currentTimeMillis());
             synchronized (mHolder) {
                 Canvas canvas = mHolder.lockCanvas();
                 canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
@@ -77,7 +77,7 @@ public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, R
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        McDroidLogger.logger().error("AAAAAA {}", aLong);
+                        logger().error("AAAAAA {}", aLong);
                         synchronized (mHolder) {
                             Canvas canvas = mHolder.lockCanvas();
                             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);

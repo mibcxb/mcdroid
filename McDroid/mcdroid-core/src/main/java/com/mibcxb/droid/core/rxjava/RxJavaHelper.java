@@ -3,7 +3,6 @@ package com.mibcxb.droid.core.rxjava;
 import android.support.annotation.NonNull;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -11,8 +10,8 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
-import static com.mibcxb.droid.core.logger.McDroidLogger.printE;
+import static com.mibcxb.droid.core.McDroidLog.logger;
+import static com.mibcxb.droid.core.McDroidLog.printE;
 
 public class RxJavaHelper {
     public static <T> Observable<T> onMainThread(@NonNull Observable<T> observable) {

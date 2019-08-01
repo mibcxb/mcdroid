@@ -6,7 +6,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.mibcxb.droid.camera.impl.CameraControllerImpl;
-import com.mibcxb.droid.core.logger.McDroidLogger;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,8 +17,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.mibcxb.droid.core.logger.McDroidLogger.logger;
-import static com.mibcxb.droid.core.logger.McDroidLogger.printE;
+import static com.mibcxb.droid.core.McDroidLog.logger;
+import static com.mibcxb.droid.core.McDroidLog.printE;
 
 
 /**
@@ -113,14 +112,14 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                             new Consumer<CameraController.PictureData>() {
                                 @Override
                                 public void accept(CameraController.PictureData pictureData) throws Exception {
-                                    McDroidLogger.logger().info("takePicture: {}", pictureData);
+                                    logger().info("takePicture: {}", pictureData);
                                     resumePreview();
                                 }
                             },
                             new Consumer<Throwable>() {
                                 @Override
                                 public void accept(Throwable throwable) throws Exception {
-                                    McDroidLogger.printE(throwable);
+                                    printE(throwable);
                                 }
                             }
                     );
