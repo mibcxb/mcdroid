@@ -1,1 +1,1 @@
-include ':app', ':mcdroid', ':mcdroid-core', ':mcdroid-arch', ':mcdroid-widget', ':mcdroid-camera'
+include ':app', ':mcdroid', ':mcdroid-core', ':mcdroid-slf4j', ':mcdroid-arch', ':mcdroid-widget', ':mcdroid-camera'

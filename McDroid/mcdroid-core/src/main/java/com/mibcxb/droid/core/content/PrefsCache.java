@@ -10,7 +10,7 @@ import static com.mibcxb.droid.core.McDroidLog.logger;
 
 
 public class PrefsCache {
-    private static final String NAME = "com.mibcxb.droid.content.prefs.cahce";
+    private static final String NAME = "com.mibcxb.droid.content.prefs.cache";
     private static final PrefsCache ourInstance = new PrefsCache();
 
     private static final long NEVER_EXPIRED = -1;
