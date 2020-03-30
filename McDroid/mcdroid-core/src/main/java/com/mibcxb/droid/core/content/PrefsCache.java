@@ -6,9 +6,6 @@ import android.content.SharedPreferences;
 import com.google.gson.Gson;
 import com.mibcxb.droid.core.util.StringUtils;
 
-import static com.mibcxb.droid.core.McDroidLog.logger;
-
-
 public class PrefsCache {
     private static final String NAME = "com.mibcxb.droid.content.prefs.cache";
     private static final PrefsCache ourInstance = new PrefsCache();
@@ -50,7 +47,7 @@ public class PrefsCache {
             try {
                 cache = gson.fromJson(cacheJson, Cache.class);
             } catch (Exception e) {
-                logger().error("PrefsCache.EXP '" + e.getMessage() + "'", e);
+                e.printStackTrace();
             }
         }
         if (cache == null) {
@@ -68,7 +65,6 @@ public class PrefsCache {
         cache.objectJson = value != null ? gson.toJson(value) : null;
         cacheJson = gson.toJson(cache);
         prefs.edit().putString(name, cacheJson).apply();
-        logger().info("PrefsCache.PUT '{}' Success.", name);
     }
 
     public <T> T get(String name, Class<T> clazz) {
@@ -84,7 +80,7 @@ public class PrefsCache {
                 object = gson.fromJson(cache.objectJson, clazz);
             }
         } catch (Exception e) {
-            logger().error("PrefsCache.EXP '" + e.getMessage() + "'", e);
+            e.printStackTrace();
         }
         if (object != null &&
                 (cache.expireTime < 0 || System.currentTimeMillis() < cache.targetTime + cache.expireTime)) {

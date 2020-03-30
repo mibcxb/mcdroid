@@ -17,9 +17,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.mibcxb.droid.core.McDroidLog.logger;
-import static com.mibcxb.droid.core.McDroidLog.printE;
-
 
 /**
  * A basic Camera preview class
@@ -112,14 +109,13 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
                             new Consumer<CameraController.PictureData>() {
                                 @Override
                                 public void accept(CameraController.PictureData pictureData) throws Exception {
-                                    logger().info("takePicture: {}", pictureData);
                                     resumePreview();
                                 }
                             },
                             new Consumer<Throwable>() {
                                 @Override
                                 public void accept(Throwable throwable) throws Exception {
-                                    printE(throwable);
+                                    throwable.printStackTrace();
                                 }
                             }
                     );

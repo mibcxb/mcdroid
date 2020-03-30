@@ -1,6 +1,6 @@
 package com.mibcxb.droid.core.rxjava;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
@@ -9,9 +9,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.mibcxb.droid.core.McDroidLog.logger;
-import static com.mibcxb.droid.core.McDroidLog.printE;
 
 public class RxJavaHelper {
     public static <T> Observable<T> onMainThread(@NonNull Observable<T> observable) {
@@ -67,7 +64,6 @@ public class RxJavaHelper {
         return new Consumer<T>() {
             @Override
             public void accept(T target) throws Exception {
-                logger().info("This is a default Consumer for {}: {}", target.getClass(), target);
             }
         };
     }
@@ -76,7 +72,7 @@ public class RxJavaHelper {
         return new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
-                printE(throwable);
+                throwable.printStackTrace();
             }
         };
     }
@@ -85,7 +81,6 @@ public class RxJavaHelper {
         return new Action() {
             @Override
             public void run() throws Exception {
-                logger().trace("The Observable is completed.");
             }
         };
     }

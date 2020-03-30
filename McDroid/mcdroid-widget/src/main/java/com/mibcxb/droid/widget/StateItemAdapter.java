@@ -1,6 +1,6 @@
 package com.mibcxb.droid.widget;
 
-import android.support.annotation.IntRange;
+import androidx.annotation.IntRange;
 
 public abstract class StateItemAdapter<Item extends StateItem> extends BaseItemAdapter<Item, StateViewHolder<Item>> {
     private boolean multiCheckEnabled;

@@ -1,4 +1,6 @@
-package com.mibcxb.droid.core.logger;
+package com.mibcxb.droid.logger;
+
+import com.mibcxb.droid.slf4j.McLogPrinter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,14 +32,10 @@ public class McLogManager {
 
     private McLogManager() {
         defaultLevel.set(McLogLevel.ERROR);
-        defaultPrinter.set(new McLogPrinter.SystemPrinter());
 
         Logger defaultLogger = defaultLogger();
-        if (defaultLogger instanceof McLoggerSetter) {
-            McLoggerSetter setter = (McLoggerSetter) defaultLogger;
-            setter.setLevel(defaultLevel.get());
-            setter.setPrinter(defaultPrinter.get());
-        }
+        McLogHelper.setLevel(defaultLogger, defaultLevel.get());
+        McLogHelper.setPrinter(defaultLogger, defaultPrinter.get());
     }
 
     public Logger createLogger(String loggerName) {
@@ -48,11 +46,8 @@ public class McLogManager {
             Logger logger = loggerMap.get(loggerName);
             if (logger == null) {
                 logger = LoggerFactory.getLogger(loggerName);
-                if (logger instanceof McLoggerSetter) {
-                    McLoggerSetter setter = (McLoggerSetter) logger;
-                    setter.setLevel(defaultLevel.get());
-                    setter.setPrinter(defaultPrinter.get());
-                }
+                McLogHelper.setLevel(logger, defaultLevel.get());
+                McLogHelper.setPrinter(logger, defaultPrinter.get());
                 loggerMap.put(loggerName, logger);
             }
             return logger;
@@ -76,14 +71,10 @@ public class McLogManager {
         defaultLevel.set(level);
 
         Logger defaultLogger = defaultLogger();
-        if (defaultLogger instanceof McLoggerSetter) {
-            ((McLoggerSetter) defaultLogger).setLevel(defaultLevel.get());
-        }
+        McLogHelper.setLevel(defaultLogger, defaultLevel.get());
         synchronized (loggerMap) {
             for (Logger logger : loggerMap.values()) {
-                if (logger instanceof McLoggerSetter) {
-                    ((McLoggerSetter) logger).setLevel(level);
-                }
+                McLogHelper.setLevel(logger, level);
             }
         }
     }
@@ -96,14 +87,10 @@ public class McLogManager {
         defaultPrinter.set(printer);
 
         Logger defaultLogger = defaultLogger();
-        if (defaultLogger instanceof McLoggerSetter) {
-            ((McLoggerSetter) defaultLogger).setPrinter(defaultPrinter.get());
-        }
+        McLogHelper.setPrinter(defaultLogger, defaultPrinter.get());
         synchronized (loggerMap) {
             for (Logger logger : loggerMap.values()) {
-                if (logger instanceof McLoggerSetter) {
-                    ((McLoggerSetter) logger).setPrinter(printer);
-                }
+                McLogHelper.setPrinter(logger, printer);
             }
         }
     }

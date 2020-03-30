@@ -43,13 +43,13 @@ public class McLoggerFactory implements ILoggerFactory {
     private final ConcurrentMap<String, Logger> loggerMap = new ConcurrentHashMap<String, Logger>();
 
     /**
-     * Return an appropriate {@link McLoggerAdapter} instance by name.
+     * Return an appropriate {@link McLogger} instance by name.
      */
     public Logger getLogger(String name) {
         String tag = loggerNameToTag(name);
         Logger logger = loggerMap.get(tag);
         if (logger == null) {
-            Logger newInstance = new McLoggerAdapter(tag);
+            Logger newInstance = new McLogger(tag);
             Logger oldInstance = loggerMap.putIfAbsent(tag, newInstance);
             logger = oldInstance == null ? newInstance : oldInstance;
         }

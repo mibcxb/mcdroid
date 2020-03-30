@@ -15,8 +15,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.mibcxb.droid.core.McDroidLog.logger;
-
 
 public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
     private Disposable disposable;
@@ -59,7 +57,6 @@ public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, R
     @Override
     public void run() {
         while (running) {
-            logger().error("AAAAAA {}", System.currentTimeMillis());
             synchronized (mHolder) {
                 Canvas canvas = mHolder.lockCanvas();
                 canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);
@@ -77,7 +74,6 @@ public class QrScanView extends SurfaceView implements SurfaceHolder.Callback, R
                 .subscribe(new Consumer<Long>() {
                     @Override
                     public void accept(Long aLong) throws Exception {
-                        logger().error("AAAAAA {}", aLong);
                         synchronized (mHolder) {
                             Canvas canvas = mHolder.lockCanvas();
                             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR);

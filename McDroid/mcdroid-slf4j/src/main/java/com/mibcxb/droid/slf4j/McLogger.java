@@ -1,8 +1,6 @@
 package com.mibcxb.droid.slf4j;
 
-import com.mibcxb.droid.core.logger.McLogLevel;
-import com.mibcxb.droid.core.logger.McLogPrinter;
-import com.mibcxb.droid.core.logger.McLoggerSetter;
+import com.mibcxb.droid.logger.McLogLevel;
 
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MarkerIgnoringBase;
@@ -12,12 +10,14 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.UnknownHostException;
 
-public class McLoggerAdapter extends MarkerIgnoringBase implements McLoggerSetter, McLogPrinter {
+public class McLogger extends MarkerIgnoringBase {
+    private static final McLogPrinter SYSTEM_PRINTER = new McDroidPrinter();
+
     private final String tag;
     private McLogLevel level;
     private McLogPrinter printer;
 
-    McLoggerAdapter(String tag) {
+    McLogger(String tag) {
         this.tag = tag;
     }
 
@@ -25,21 +25,12 @@ public class McLoggerAdapter extends MarkerIgnoringBase implements McLoggerSette
         return level;
     }
 
-    @Override
     public synchronized void setLevel(McLogLevel level) {
         this.level = level;
     }
 
-    @Override
     public synchronized void setPrinter(McLogPrinter printer) {
         this.printer = printer;
-    }
-
-    @Override
-    public synchronized void printLog(McLogLevel level, String tag, String msg) {
-        if (printer != null) {
-            printer.printLog(level, tag, msg);
-        }
     }
 
     /**
@@ -480,7 +471,12 @@ public class McLoggerAdapter extends MarkerIgnoringBase implements McLoggerSette
         if (throwable != null) {
             message += '\n' + getStackTraceString(throwable);
         }
-        printLog(level, tag, message);
+
+        if (printer != null) {
+            printer.printLog(level, tag, message);
+        } else {
+            SYSTEM_PRINTER.printLog(level, tag, message);
+        }
     }
 
     /**

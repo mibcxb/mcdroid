@@ -22,7 +22,7 @@
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
  */
-package impl;
+package org.slf4j.impl;
 
 import org.slf4j.IMarkerFactory;
 import org.slf4j.MarkerFactory;

@@ -12,9 +12,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 
-import static com.mibcxb.droid.core.McDroidLog.logger;
-import static com.mibcxb.droid.core.McDroidLog.printE;
-
 /**
  * Use this controller when api code < 21
  */
@@ -39,7 +36,7 @@ public class CameraControllerImpl extends CameraControllerBase {
             try {
                 mCamera = Camera.open();
             } catch (Exception e) {
-                printE(e);
+                e.printStackTrace();
             }
         }
     }
@@ -55,7 +52,7 @@ public class CameraControllerImpl extends CameraControllerBase {
             isPreviewStarted.set(true);
             enableAutoFocus();
         } catch (IOException e) {
-            logger().info("Error setting camera preview: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -69,7 +66,7 @@ public class CameraControllerImpl extends CameraControllerBase {
             mCamera.stopPreview();
             isPreviewStarted.set(false);
         } catch (Exception e) {
-            logger().trace(e.getMessage(), e);
+            e.printStackTrace();
         }
     }
 
@@ -100,28 +97,24 @@ public class CameraControllerImpl extends CameraControllerBase {
                         new Camera.ShutterCallback() {
                             @Override
                             public void onShutter() {
-                                logger().info("onShutter: {}", mCamera);
                             }
                         },
                         new Camera.PictureCallback() {
                             @Override
                             public void onPictureTaken(byte[] data, Camera camera) {
                                 int length = data == null ? -1 : data.length;
-                                logger().info("onPictureTaken: RAW={}, {}", length, mCamera);
                             }
                         },
                         new Camera.PictureCallback() {
                             @Override
                             public void onPictureTaken(byte[] data, Camera camera) {
                                 int length = data == null ? -1 : data.length;
-                                logger().info("onPictureTaken: PostView={}, {}", length, mCamera);
                             }
                         },
                         new Camera.PictureCallback() {
                             @Override
                             public void onPictureTaken(byte[] data, Camera camera) {
                                 int length = data == null ? -1 : data.length;
-                                logger().info("onPictureTaken: JPEG={}, {}", length, mCamera);
                             }
                         });
             }

@@ -1,4 +1,4 @@
-package com.mibcxb.droid.core.logger;
+package com.mibcxb.droid.logger;
 
 public enum McLogLevel {
     NONE(Integer.MAX_VALUE),

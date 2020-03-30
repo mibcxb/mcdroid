@@ -2,8 +2,7 @@ package com.mibcxb.droid.slf4j;
 
 import android.util.Log;
 
-import com.mibcxb.droid.core.logger.McLogLevel;
-import com.mibcxb.droid.core.logger.McLogPrinter;
+import com.mibcxb.droid.logger.McLogLevel;
 
 public class McDroidPrinter implements McLogPrinter {
     @Override

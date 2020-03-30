@@ -3,11 +3,9 @@ package com.mibcxb.droid.demo;
 import android.app.Application;
 
 import com.mibcxb.droid.McDroid;
-import com.mibcxb.droid.core.logger.McLogLevel;
-import com.mibcxb.droid.core.logger.McLogManager;
+import com.mibcxb.droid.logger.McLogLevel;
+import com.mibcxb.droid.logger.McLogManager;
 import com.mibcxb.droid.slf4j.McDroidPrinter;
-
-import static com.mibcxb.droid.core.McDroidLog.logger;
 
 public class DemoApplication extends Application {
     @Override
@@ -17,6 +15,6 @@ public class DemoApplication extends Application {
         McDroid.init(this);
         McLogManager.instance().setLogLevel(McLogLevel.DEBUG);
         McLogManager.instance().setPrinter(new McDroidPrinter());
-        logger().error("McDroid initialized: {}", McDroid.versionName());
+        McLogManager.defaultLogger().error("McDroid initialized: {}", McDroid.versionName());
     }
 }
